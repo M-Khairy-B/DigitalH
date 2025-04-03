@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Authentication and Dashboard Project
 
-## Getting Started
+## 🔑 Authentication
 
-First, run the development server:
+- Users can log in using email and password.
+- Authentication is handled using NextAuth.js.
+- Upon successful login, users are redirected to the dashboard.
+- Authentication errors are handled gracefully.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Default Login Credentials:
+
+```json
+{
+  "email": "john@mail.com",
+  "password": "changeme"
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📊 Dashboard
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Products Page:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Displays a table of products with the following columns as per API docs.
+- Includes actions: **Edit, Delete, View Details**.
+- Search functionality by product name.
+- Interactive hover effects for better user experience.
 
-## Learn More
+### ➕ Add Product:
 
-To learn more about Next.js, take a look at the following resources:
+- Button to open a modal for adding a new product.
+- Form includes fields as specified in the API docs.
+- Form validation is enforced before submission.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### ✏️ Edit Product:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Clicking **Edit** opens a modal with pre-filled product details.
+- Users can update product details.
+- Form validation is enforced before submission.
 
-## Deploy on Vercel
+### 🗑️ Delete Product:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Clicking **Delete** shows a confirmation dialog.
+- Deletes the product after user confirmation.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 🔍 View Product Details:
+
+- Clicking **View Details** opens a modal with detailed product information.
+
+## 📂 Setup and Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-repo.git
+   ```
+2. Navigate to the project folder:
+   ```bash
+   cd your-project-folder
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Run the development server:
+   ```bash
+   npm run dev
+   ```
+5. Open your browser and visit:
+   ```
+   http://localhost:3000
+   ```

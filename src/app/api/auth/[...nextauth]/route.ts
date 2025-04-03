@@ -1,6 +1,7 @@
-import NextAuth, { NextAuthOptions, type User } from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import axios from "axios";
+import { NextRequest, NextResponse } from "next/server";
 
 declare module "next-auth" {
   interface User {
@@ -24,7 +25,7 @@ interface LoginResponse {
   refresh_token: string;
 }
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -36,12 +37,11 @@ export const authOptions: NextAuthOptions = {
         },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials): Promise<User | null> {
+      async authorize(credentials) {
         try {
           const apiUrl =
             process.env.NEXT_PUBLIC_API_URL ||
             "https://api.escuelajs.co/api/v1";
-
           const { data } = await axios.post<LoginResponse>(
             `${apiUrl}/auth/login`,
             {
@@ -90,4 +90,7 @@ export const authOptions: NextAuthOptions = {
 
 const handler = NextAuth(authOptions);
 
-export { handler as GET, handler as POST };
+export const GET = async (req: NextRequest) =>
+  handler(req, NextResponse.next());
+export const POST = async (req: NextRequest) =>
+  handler(req, NextResponse.next());
